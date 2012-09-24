@@ -12,6 +12,9 @@ AC_INIT([phc], [0.3.0.1], [phc-general@phpcompiler.org])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_AUX_DIR([config])
+AC_CONFIG_AUX_DIR([libltdl/config])
+AC_CONFIG_MACRO_DIR([libltdl/m4])
+
 AC_PREREQ(2.63) # 2.61 adds a warning. Pre-2.61 just doesnt work.
 
 PHC_CHECK_SVN
@@ -20,6 +23,8 @@ dnl configure automake
 AM_INIT_AUTOMAKE([foreign -Wall -Werror 1.10]) # 1.10 changed a lot of things.
 AM_MAINTAINER_MODE
 
+CFLAGS="$CFLAGS -I$PREFIX/include/php5 -I/usr/local/include/php5 -I/usr/include/php5  -I/usr/include/php5/Zend -I/usr/include/php5/main -I/usr/include/php5/TSRM "
+LDFLAGS="$LDFLAGS  -L$PREFIX/lib/php5 -L/usr/lib/php5"
 
 dnl checks for programs
 AC_PROG_CC
@@ -41,7 +46,8 @@ AC_PATH_PROG([dot], [dot])
 AC_PATH_PROG([graphviz_gc], [gc])
 
 AC_ARG_WITH([maketea], 
-   AS_HELP_STRING([--with-maketea], [path to maketea (if installed)]),
+   AS_HELP_STRING([-
+-with-maketea], [path to maketea (if installed)]),
   [AC_PATH_PROG([maketea], [maketea], [config/phc_missing maketea], [${withval}:${withval}/bin])],
   [AC_PATH_PROG([maketea], [maketea], [config/phc_missing maketea])]
   )

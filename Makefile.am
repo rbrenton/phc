@@ -15,13 +15,14 @@ SUBDIRS = libltdl
 
 # Note the preprocessor supports -Wall, so we put that here, rather than a seperate CXX_FLAGS
 AM_CPPFLAGS = \
-	$(BOOST_CPPFLAGS) $(LTDLINCL) $(XERCES_CPPFLAGS) 															\
-	-I$(srcdir)/src -I$(srcdir) -I$(srcdir)/3rdparty/getopt -I$(srcdir)/src/generated		\
-	@libphp_headers@																				\
-	-DDATADIR=\"$(datadir)\" -DPKGLIBDIR=\"$(pkglibdir)\"								\
+	$(BOOST_CPPFLAGS) $(LTDLINCL) $(XERCES_CPPFLAGS)                                                     \
+	-I/usr/local/include/php5 -I/usr/include/php5/Zend -I/usr/include/php5/main -I/usr/include/php5/TSRM \
+	-I$(srcdir)/src -I$(srcdir) -I$(srcdir)/3rdparty/getopt -I$(srcdir)/src/generated		     \
+	@libphp_headers@										     \
+	-DDATADIR=\"$(datadir)\" -DPKGLIBDIR=\"$(pkglibdir)\"						     \
 	-Wall
 
-AM_LDFLAGS = $(BOOST_LDFLAGS) $(XERCES_LDFLAGS)
+AM_LDFLAGS = $(BOOST_LDFLAGS) $(XERCES_LDFLAGS) $(prefix)/lib/php5/
 
 lib_LTLIBRARIES = libphc.la
 bin_PROGRAMS = src/phc
@@ -30,7 +31,8 @@ bin_PROGRAMS = src/phc
 # hear about. 
 AM_CXXFLAGS = -Wextra -Wno-unused-parameter -Wno-write-strings -Wno-deprecated
 
-ACLOCAL_AMFLAGS = -I m4 -I libltdl
+#ACLOCAL_AMFLAGS = -I m4 -I libltdl/m4
+ACLOCAL_AMFLAGS = -I libltdl/m4 
 
 # Note about warnings: automake does not support per-file flags. If they did,
 # we could set -Wall -Wextra -Werror, and fix things as they came up. However,
