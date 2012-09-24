@@ -245,7 +245,13 @@ Internal_method_info::has_implementation ()
 bool
 Internal_method_info::return_by_ref ()
 {
+
+#ifdef ZEND_ENGINE_2
+	return (func->common.fn_flags & ZEND_ACC_RETURN_REFERENCE);
+#else
 	return func->common.return_reference;
+#endif
+
 }
 
 bool
