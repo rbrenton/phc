@@ -16121,7 +16121,7 @@ if test "x$ac_cv_lib_php5_zend_eval_string" = x""yes; then :
 
 			libphp_headers="-isystem${PHP_INSTALL_PATH}/include/php -isystem${PHP_INSTALL_PATH}/include/php/main -isystem${PHP_INSTALL_PATH}/include/php/TSRM -isystem${PHP_INSTALL_PATH}/include/php/Zend"
 
-			LIBS="-lphp5 -L${PHP_INSTALL_PATH}/lib -R${PHP_INSTALL_PATH}/lib $LIBS"
+			LIBS="-lphp5 -L${PHP_INSTALL_PATH}/lib -Wl,-R${PHP_INSTALL_PATH}/lib $LIBS"
 
 else
 
@@ -16249,7 +16249,7 @@ if test "x$ac_cv_lib_php5_zend_eval_string" = x""yes; then :
 
 			libphp_headers="-isystem${PHP_INSTALL_PATH}/include/php -isystem${PHP_INSTALL_PATH}/include/php/main -isystem${PHP_INSTALL_PATH}/include/php/TSRM -isystem${PHP_INSTALL_PATH}/include/php/Zend"
 
-			LIBS="-lphp5 -L${PHP_INSTALL_PATH}/lib -R${PHP_INSTALL_PATH}/lib $LIBS"
+			LIBS="-lphp5 -L${PHP_INSTALL_PATH}/lib -Wl,-R${PHP_INSTALL_PATH}/lib $LIBS"
 
 else
 
